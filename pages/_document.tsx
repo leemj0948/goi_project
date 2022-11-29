@@ -1,5 +1,5 @@
 //_app.tsx 다음에 실행되는 파일
-//공통 활용될 <head><body>태그 커스텀 
+//공통 활용될 <head><body>태그 커스텀
 import Document, { DocumentContext, Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
