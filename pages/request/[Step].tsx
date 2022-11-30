@@ -1,12 +1,21 @@
 import styled from 'styled-components';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import Step2 from '@src/components/Step2';
 
 export default function Step() {
+  const router = useRouter();
+  console.log(router);
+  const switching = false;
+  const nowStep = router.query.Step;
+
   return (
     <Wapper>
       <Contents>
-        <Steps>1/2</Steps>
-        <Title>견적 요청서</Title>
+        <Steps>{nowStep}/2</Steps>
+        {switching?(  
+          <>
+          <Title>견적 요청서</Title>
         <Question>
           <h2>장례 준비가 긴급한 상황일까요?</h2>
           <div>
@@ -24,10 +33,14 @@ export default function Step() {
             </label>
           </div>
         </Question>
+          </>
+        ):(  <Step2/>)}
+      
       </Contents>
       <NextBtn>
         <Link href="/request/2">다음</Link>
       </NextBtn>
+    
     </Wapper>
   );
 }
