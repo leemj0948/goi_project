@@ -1,15 +1,20 @@
 import styled from 'styled-components';
+import { textAreaState } from '@src/states';
+import {useRecoilState } from 'recoil';
+import React from 'react';
 
 export default function Step2(){
+    const [text,setText] = useRecoilState(textAreaState);
+    const textareaHandler = (e:React.ChangeEvent<HTMLTextAreaElement>)=>setText(e.target.value)
 return (
     <>
      <Title>견적 요청서 제출</Title>
         <Question>
           <h2>그 밖에, 요청하고 싶은 점이 있나요?</h2>
           <div>
-            <textarea cols={Number(40)} rows={Number(15)} placeholder='예) 수의는 이미 준비해서 공제받고 싶은데 가능 할까요?'/>
+            <textarea onChange={textareaHandler} value={text} cols={Number(40)} rows={Number(15)} placeholder='예) 수의는 이미 준비해서 공제받고 싶은데 가능 할까요?' maxLength={Number(300)}/>
           </div>
-          <TextCounter><p>0자 / 300자</p></TextCounter>
+          <TextCounter><p>{text.length}자 / 300자</p></TextCounter>
         </Question>
     </>
 )

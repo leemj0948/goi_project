@@ -1,36 +1,37 @@
 import styled from 'styled-components';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { NextRouter, useRouter } from 'next/router';
 import Step2 from '@src/components/Step2';
+import {  useRecoilValue, useSetRecoilState } from 'recoil';
+import { radioState } from '@src/states';
 
 export default function Step() {
+  const radioHandler =useSetRecoilState(radioState);
+  const selectRadio = (e:React.MouseEvent<HTMLInputElement>) =>{radioHandler(()=>e.currentTarget.value);}
   const router = useRouter();
-  console.log(router);
-  const switching = false;
-  const nowStep = router.query.Step;
-
+  console.log(router,useRecoilValue(radioState));
+  
+  const nowStep= router.query.Step;
+  const radioValue = ['급하지 않지만 미리 알아보려고 해요.','1달 정도 기간이 남은 것 같아요.','임종이 얼마 남지 않았어요.']
   return (
     <Wapper>
       <Contents>
         <Steps>{nowStep}/2</Steps>
-        {switching?(  
+        {nowStep==='1'?(  
           <>
           <Title>견적 요청서</Title>
         <Question>
           <h2>장례 준비가 긴급한 상황일까요?</h2>
           <div>
-            <label>
-              <input type="radio" name="chk_info" value="1" />
-              급하지 않지만 미리 알아보려고 해요.
+          {radioValue.map((text)=>{
+            return(
+              <label>
+              <input type="radio" name="chk_info" value={text} onClick={e=>selectRadio(e)}/>
+              {text}
             </label>
-            <label>
-              <input type="radio" name="chk_info" value="2" />
-              1달 정도 기간이 남은 것 같아요.
-            </label>
-            <label>
-              <input type="radio" name="chk_info" value="3" />
-              임종이 얼마 남지 않았어요.
-            </label>
+            )
+            
+          })}
           </div>
         </Question>
           </>
