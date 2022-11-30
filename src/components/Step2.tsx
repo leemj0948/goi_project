@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 import { textAreaState } from '@src/states';
 import {useRecoilState } from 'recoil';
-import React from 'react';
+
 
 export default function Step2(){
+    
     const [text,setText] = useRecoilState(textAreaState);
     const textareaHandler = (e:React.ChangeEvent<HTMLTextAreaElement>)=>setText(e.target.value)
+  
 return (
     <>
      <Title>견적 요청서 제출</Title>

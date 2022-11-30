@@ -5,11 +5,27 @@ const nextConfig = {
   async redirects(){
     return [
       {
-        source:"/request/:path(\\d[2])",
-      destination:"/request/:path(\\d[1])",
+      source:"/request/:path(\\d[2])",
+      destination:"/",
+      permanent:true,
+    },
+    {
+      source:"/request/:path(\\w[2])",
+      destination:"/",
+      permanent:true,
+    },
+    {
+      source:"/request/:path(\\2)",
+      destination:"/",
+      permanent:true,
+    },
+    {
+      source:"/request/:path(\\^2)",
+      destination:"/",
       permanent:true,
     }
     ]
+
   }
 }
 

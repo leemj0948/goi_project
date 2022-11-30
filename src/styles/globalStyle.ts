@@ -6,7 +6,7 @@ ${reset};
   
   html,
   body {
-    width: 365px;
+    width: 355px;
     height: 575px;
   }
   
@@ -18,9 +18,7 @@ ${reset};
    
     // font-size: 62.5%;
   }
-  body{
-    margin: 2rem auto;
-  }
+
  
   * {
     box-sizing: border-box;

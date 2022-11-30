@@ -8,5 +8,9 @@ const textAreaState = atom({
     key:'textAreaState',
     default:''
 })
+const modalState = atom({
+    key:'modalState',
+    default:false,
+})
 
-export {radioState,textAreaState}
+export {radioState,textAreaState,modalState}
