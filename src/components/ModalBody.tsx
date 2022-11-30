@@ -7,9 +7,9 @@ interface Iprops{
     onClose: ()=>void
 }
 export default function ModalBody(props:Iprops){
-    const modalHandler = useSetRecoilState(modalState);
-    const modalClose = () =>{modalHandler(()=>false)}
-    const prevSelectValue = useRecoilValue(radioState)
+    const modalHandler = useSetRecoilState<boolean>(modalState);
+    const modalClose = ():void =>{modalHandler(()=>false)}
+    const prevSelectValue = useRecoilValue<string>(radioState)
 return(
     <Modal onClose={props.onClose}>
         <ModalContents>

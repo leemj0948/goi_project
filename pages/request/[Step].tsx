@@ -8,12 +8,12 @@ import React from 'react';
 import ModalBody from '@src/components/ModalBody';
 
 export default function Step() {
-  const radioHandler =useSetRecoilState(radioState);
+  const radioHandler =useSetRecoilState<string>(radioState);
   const selectRadio = (e:React.MouseEvent<HTMLInputElement>) =>{radioHandler(()=>e.currentTarget.value);}
   const router = useRouter();  
   const nowStep= router.query.Step;
-  const radioValue = ['급하지 않지만 미리 알아보려고 해요.','1달 정도 기간이 남은 것 같아요.','임종이 얼마 남지 않았어요.']
-  const [modalOpen,setModalOpen] = useRecoilState(modalState);
+  const radioValue:string[] = ['급하지 않지만 미리 알아보려고 해요.','1달 정도 기간이 남은 것 같아요.','임종이 얼마 남지 않았어요.']
+  const [modalOpen,setModalOpen] = useRecoilState<boolean>(modalState);
   const ModalOpen = ():void =>{return setModalOpen(true)}
   const ModalClose= ():void =>{return setModalOpen(false)}
 

@@ -5,7 +5,7 @@ import {useRecoilState } from 'recoil';
 
 export default function Step2(){
     
-    const [text,setText] = useRecoilState(textAreaState);
+    const [text,setText] = useRecoilState<string>(textAreaState);
     const textareaHandler = (e:React.ChangeEvent<HTMLTextAreaElement>)=>setText(e.target.value)
   
 return (
