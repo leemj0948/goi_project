@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import Step from './request/[step]';
 import Link from 'next/link';
 
 export default function Home() {
@@ -18,9 +17,9 @@ export default function Home() {
         <div>
         <div>고이 프로젝트</div>
         <Link href="/request/1">시작</Link>
-        {/* <Step/> */}
+        
         </div>
       )}
->    </div>
+    </div>
   );
 }
