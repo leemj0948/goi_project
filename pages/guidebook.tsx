@@ -1,10 +1,14 @@
+import React, { ReactEventHandler, useState } from 'react';
 import styled from 'styled-components';
 export default function guidebook(){
+    const [inputData,setInputData] = useState('')
+    const submitInput = (e:React.KeyboardEvent<HTMLInputElement>) =>{e.key==='Enter'&&console.log(inputData)}
+    const inputHandler = (e:React.ChangeEvent<HTMLInputElement>) =>setInputData(e.target.value)
     return (
         <Wapper>
             <Title>가이드북 검색</Title>
             <InputArea>
-            <input placeholder='텍스트를 입력해주세요.'/>
+            <input placeholder='텍스트를 입력해주세요.' value={inputData} onChange={inputHandler} onKeyDown={submitInput}/>
             <div><p>29</p>건의 검색 결과가 있습니다.</div>
             </InputArea>
             <SearchList>
@@ -15,9 +19,6 @@ export default function guidebook(){
     )
 }
 const Wapper = styled.section`
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: space-between;
   padding: 2.5rem 1rem 0;
   height: 100%;
   min-height: 575px;
@@ -51,6 +52,7 @@ div{
 `;
 const SearchList =styled.div`
 margin-top: 50px;
+height:100px;
 ul {
    display:flex;
    font-size: 1.5rem;
