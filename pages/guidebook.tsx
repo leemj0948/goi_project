@@ -81,6 +81,8 @@ export default function guidebook(){
  
     return (
         <Wapper>
+            {process.env.NEXT_PUBLIC_RUN_MODE === 'development' ?(<></>):(
+            <> 
             <Title>가이드북 검색</Title>
             <InputArea>
             <input placeholder='텍스트를 입력해주세요.' value={inputData} onChange={inputHandler} onKeyDown={submitInput}/>
@@ -103,6 +105,9 @@ export default function guidebook(){
           
             <div ref={intersection}></div>
             </SearchList>
+            </>
+            )}
+           
         </Wapper>
     )
 }

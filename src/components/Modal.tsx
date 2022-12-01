@@ -21,7 +21,6 @@ const ModalOverlay = ({children}:PropsWithChildren)=>{
 }
 export default function Modal(props:PropsWithChildren<ModalProps>){
     const selectedElement = document.getElementById('modal');
-    console.log('se',selectedElement)
     if(selectedElement === null){
         return <div></div>
     }
