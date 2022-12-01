@@ -15,8 +15,17 @@ export default function Home() {
         </div>
       ) : (
         <div>
-        <div>고이 프로젝트</div>
-        <Link href="/request/1">시작</Link>
+        <div style={{fontSize: '2rem',fontWeight: 'bold',textAlign: 'center',margin: '1.5rem auto'}}>고이 프로젝트</div>
+        <Link style={{    display: 'block',
+                          width: '80%',
+                          textAlign: 'center',
+                          margin: '1rem auto',
+                          border: '1px wheat solid',
+                          color: 'white',
+                          backgroundColor: 'darkgrey',
+                          height: '30px',
+                          paddingTop: '7px'
+}}href="/request/1">시작(클릭)</Link>
         
         </div>
       )}
