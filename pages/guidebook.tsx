@@ -4,20 +4,19 @@ import axios from 'axios'
 import { useInfiniteQuery } from 'react-query';
 import { useIntersectionObserver } from '@src/hooks/useIntersectionObserver';
 
-interface IData {
+interface Igroup {
     count: number;
-    next: string;
-    previous: string;
-    results:resultData;
-  }
-interface resultData {
-    category:string;
-    date: string,
-    index: number,
-    tag: string,
-    title: string,
-    type: string
-
+next: string | null ; 
+previous: null | string;
+results:Iresult[];
+}
+interface Iresult {
+    category: string;
+    date:string;
+    index: string;
+    tag: string;
+    title: string;
+    type: string;
 }
 export default function guidebook(){
     const intersection = useRef(null);
@@ -42,7 +41,9 @@ export default function guidebook(){
                query:trigger
            }
        })
+      
        setTotalCnt(res.data.count)
+       console.log(res,res.data);
       return res.data
        }catch(err){
         console.error(err);
@@ -55,10 +56,10 @@ export default function guidebook(){
     }
 
         const {  
-            data, // 💡 data.pages를 갖고 있는 배열
-            error, // error 객체
-            fetchNextPage, // 💡 다음 페이지를 불러오는 함수
-            status, // 💡 loading, error, success 중 하나의 상태, string
+            data, // data.pages를 갖고 있는 배열
+            error,
+            fetchNextPage, // 다음 페이지를 불러오는 함수
+            status,
                 }= useInfiniteQuery(
                     trigger,getDataList,{
                     //option라인
@@ -74,8 +75,7 @@ export default function guidebook(){
             )
     
 
-    const intersectionCallBack = ([entry]):IntersectionObserverCallback =>{
-        entry.isIntersecting&& fetchNextPage()}
+    const intersectionCallBack = ([entry]):IntersectionObserverEntry =>entry.isIntersecting&& fetchNextPage()
     useIntersectionObserver({target:intersection,callBackFn:intersectionCallBack})
 
  
@@ -84,16 +84,16 @@ export default function guidebook(){
             <Title>가이드북 검색</Title>
             <InputArea>
             <input placeholder='텍스트를 입력해주세요.' value={inputData} onChange={inputHandler} onKeyDown={submitInput}/>
-            {totalCnt>0&&<div><p>{totalCnt}</p>건의 검색 결과가 있습니다.</div>}
+            {(totalCnt && totalCnt>0)&&<div><p>{totalCnt}</p>건의 검색 결과가 있습니다.</div>}
             </InputArea>
             <SearchList>
                 {status === "loading" && <p>불러오는 중</p>}
                 {status === "error" && <p>{error.message}</p>}
                 {status === "success" &&
-              data?.pages.map((group) => (
-                
-                      group?.results.map((res,idx) => {
+              data?.pages.map((group:Igroup) => (
+                      group?.results.map((res:Iresult,idx:number) => {
                         const {title,tag,date} = res;
+                        console.log(group,'group')
                         return (
                             <List key={idx}>
                                  <ul><p>•</p> {title}</ul>
