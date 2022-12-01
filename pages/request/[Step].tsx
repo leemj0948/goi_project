@@ -20,6 +20,8 @@ export default function Step() {
   return (
     <Wapper>
       {modalOpen && <ModalBody onClose={()=>ModalClose()}/>}
+      {process.env.NEXT_PUBLIC_RUN_MODE === 'development' ?(<></>):(
+      <>
       <Contents>
         <Steps>{nowStep}/2</Steps>
         {nowStep==='1'?(  
@@ -47,6 +49,9 @@ export default function Step() {
         {nowStep==='1'?<Link href="/request/2">다음</Link>:<button onClick={()=>ModalOpen()}>견적요청하기</button>}
         
       </NextBtn>
+      </>
+      )}
+      
     
     </Wapper>
   );
